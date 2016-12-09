@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<!-- Author: David M. Howcroft, 2015 -->
+<!-- Adapted from http://www.w3schools.com/cssref/tryit.asp?filename=trycss_sel_hover_more -->
+<html>
+<head>
+<style type="text/css">
+body {
+  width: 800px;
+}
+div {
+  font-size: 36px;
+  line-height: 2.5em;
+  cursor: crosshair;
+}
+span { 
+  display: inline-block;
+  color: rgba(0,0,0,0.0);
+  padding: 2px 0.16em 2px 0.16em;
+  margin: 20px 0 20px 0;
+  /* Prevent users from highlighting the text */
+  /* Adapted from http://stackoverflow.com/a/4407335/744239 */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Set the gradient background indicating where text will appear */
+  background: -webkit-linear-gradient(white, white, grey, white, white); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(white, white, grey, white, white); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(white, white, grey, white, white); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(white,white, grey, white, white); /* Standard syntax (must be last) */
+}
+span.viewable:hover {
+  background: white;
+  color: black;
+}
+</style>
+<script type="text/javascript">
+var started = new Date();
+</script>
+</head>
+<body>
+<h1>Example of CSS-driven Mouse-Contingent Reading</h1>
+
+<p>This exercise was inspired bythe work of <a href="http://www.aclweb.org/anthology/W/W15/W15-4705.pdf" title="Link to the ENLG 2015 paper 'Reading Times Predict the Quality of Generated Text...'">Zarieß et al. 2015</a>. They presented a whole-document, sentence-by-sentence approach to mouse-contingent reading. While the approach presented here does not yet include mouse-position tracking, it does provide word- or phrase-level text views, allowing in principle for finer grained reading time measures.</p>
+
+<p>If you decide to develop this idea further, please let me know&mdash;I'd love to use your code! An acknowledgement might also be nice, if this is actually helpful :)</p>
+
+<h2>Sample Text</h2>
+<p>The lines below denote continuous text. As you drag your mouse along above the lines, you should see individual words appear. Give it a shot!</p>
+
+<div>
+<span id="1" class="viewable">This</span><span id="2">is</span><span id="3">a</span><span id="4">longer</span><span id="5">test</span><span id="6">sentence.</span><span id="7">I</span><span id="8">might</span><span id="9">even</span><span id="10">make</span><span id="11">a</span><span id="12">whole</span><span id="13">paragraph</span><span id="14">of</span><span id="15">it.</span><span id="16">This</span><span id="17">is</span><span id="18">my</span><span id="19">first</span><span id="20">test</span><span id="21">of</span><span id="22">the</span><span id="23">span</span><span id="24">generation</span><span id="25">script</span><span id="26">adding</span><span id="27">span</span><span id="28">IDs</span><span id="29">(i.e.</span><span id="30">word</span><span id="31">IDs)</span><span id="32">to</span><span id="33">the</span><span id="34">spans</span><span id="35">of</span><span id="36">the</span><span id="37">example</span><span id="38">text.</span>
+</div>
+
+<h2>Sample Timing Data</h2>
+
+<p>After a timestamp indicating the page load time, we record 3 columns of data relating to mouse events.
+   The first column indicates whether the word was visible ('on') or not ('off'), the second indicates the word index (beginning with 1), and the third contains the time in milliseconds since the page load time.
+   The notions of 'on' and 'off' correspond to the <code>onmouseover</code> and <code>onmouseout</code> events in Javascript and coincide with the CSS triggers for making text (in)visible.</p>
+<p id="output"></p>
+
+<script type="text/javascript">
+function write_out(string) {
+  document.getElementById('output').innerHTML = string;
+}
+
+function append_out(string) {
+  var outstring = "<br />".concat(string)
+  document.getElementById('output').innerHTML = document.getElementById('output').innerHTML.concat(outstring);
+}
+
+function record_time(label) {
+  var currtime = new Date();
+  var outstring = label.concat(",".concat(currtime-started));
+  append_out(outstring);
+}
+
+function word_on(span_obj) {
+  record_time("on,".concat(span_obj.id));
+}
+
+function word_off(span_obj) {
+  record_time("off,".concat(span_obj.id));
+}
+
+write_out("Loaded at: ".concat(started));
+
+var spans = document.getElementsByTagName("span");
+var i;
+
+for (i = 1; i <= spans.length; i++) {
+  elem = document.getElementById(i + '');
+  elem.onmouseover = function() { 
+    if (this.className == "viewable") { 
+      word_on(this); 
+      var i = +this.id
+      var j = i + 1;
+      var k = i + 2;
+      var next_elem = document.getElementById(j + '');
+      if (next_elem != null) {
+        next_elem.className = "viewable";
+      }
+      var next_next_elem = document.getElementById(k + '');
+      if (next_next_elem != null) {
+        next_next_elem.className = "viewable";
+      }
+    }
+  }
+  elem.onmouseout = function() { 
+    if (this.className == "viewable") { 
+     word_off(this); 
+    }
+  }
+}
+</script>
+</body>
+</html>
