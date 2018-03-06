@@ -1,6 +1,8 @@
 `mcrt`: Exploring Mouse-Contingent Reading Times
 ================================================
 
+If you just want to try it out, the demo is live at: http://davehowcroft.com/files/examples/word-mcr.html
+
 Explanation copied from the demo
 --------------------------------
 This exercise was inspired by the work of Zarieß et al. (2015). They presented a whole-document, sentence-by-sentence approach to mouse-contingent reading. While the approach presented here does not yet include mouse-position tracking, it does provide word- or phrase-level text views, allowing in principle for finer grained reading time measures.
@@ -19,5 +21,5 @@ References
 
 Zarrieß, Sina, Sebastian Loth, and David Schlangen. 2015. 
 "Reading Times Predict the Quality of Generated Text Above and Beyond Human Ratings". 
-In ***Proceedings of the 15th European Workshop on Natural Language Generation (ENLG)***, pages 38–47, Brighton, September 2015. 
+In _Proceedings of the 15th European Workshop on Natural Language Generation (ENLG)_, pages 38–47, Brighton, September 2015. 
 Published by the Association for Computational Linguistics.
