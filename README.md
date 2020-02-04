@@ -3,6 +3,8 @@
 
 If you just want to try it out, the demo is live at: http://davehowcroft.com/files/examples/word-mcr.html
 
+![Animated GIF showing the mouse-contingent reading time interface in action](https://github.com/dmhowcroft/mcrt/blob/master/mouse-contingent.gif)
+
 Explanation copied from the demo
 --------------------------------
 This exercise was inspired by the work of Zarieß et al. (2015). They presented a whole-document, sentence-by-sentence approach to mouse-contingent reading. While the approach presented here does not yet include mouse-position tracking, it does provide word- or phrase-level text views, allowing in principle for finer grained reading time measures.
@@ -12,9 +14,10 @@ If you decide to develop this idea further, please let me know—I'd love to use
 Contributing
 ------------
 
-If you're modifying this for your own needs, I'd love it if you create a fork of this project and share your code under Apache 2 as well.
+Thanks to [@VerbingNouns](https://github.com/VerbingNouns) for creating the animated GIF shown above.
 
-Ideally, I'd like to collect variations on this experimental design here so we can eventually run some comparisons between the designs and with self-paced reading (SPR) and eye-tracking (ET) data.
+Now that I am at Heriot-Watt University I am working with Verena Rieser and several students to develop a useful implementation of this interface.
+Get in touch if you want to help validate this experimental paradigm!
 
 References
 ----------
